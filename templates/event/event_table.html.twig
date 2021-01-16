@@ -1,0 +1,43 @@
+<table class="table table-sorties table-responsive">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Nom de la sortie</th>
+        <th scope="col">Date de la sortie</th>
+        <th scope="col">Duree en heures</th>
+        <th scope="col">Clôture</th>
+        <th scope="col">Inscrits/places</th>
+        <th scope="col">Etat</th>
+        <th scope="col">Inscrit</th>
+        <th scope="col">Organisateur</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if events %}
+        {% for event in events %}
+        <tr>
+            <td>{{ event.name }}</td>
+            <td>{{ event.startDate ? event.startDate|date('Y-m-d') : '' }}</td>
+            <td>{{ event.duration }}</td>
+            <td>{{ event.endDate ? event.endDate|date('Y-m-d') : '' }}</td>
+            <td>0/{{ event.maxRegistrations }}</td>
+            {# todo: Gestion de etat de la sortie: en cours, fermée, ouverte #}
+            <td>{{ event.eventState }}</td>
+            {# todo: Gestion des inscriptions, afficher "X" dans le tableau si inscrit #}
+            <td>X</td>
+            <td>{{ event.organizer.getFirstName }} {{ event.organizer.getLastName }}</td>
+            <td>
+                <a href="{{ path('event_show', {'id': event.id}) }}">Afficher</a>
+                {% if app.user.firstname  == event.organizer.firstName %}
+                <a href="{{ path('event_edit', {'id': event.id}) }}">Modifier</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="14">Aucune sortie</td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>

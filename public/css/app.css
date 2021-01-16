@@ -1,0 +1,62 @@
+body{
+    background-color: #e2e2e2;
+}
+main{
+    background-color: white;
+    padding: 40px;
+}
+
+div#navbarNav {
+    justify-content: flex-end;
+}
+
+.creer-sortie a{
+    color: white;
+}
+
+footer{
+    background-color: #313131;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+    padding: 30px;
+}
+
+.right-block{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.filters{
+    margin-bottom: 30px;
+}
+.select-campus, .search-sortie, .datepicker{
+    margin: 10px 10px 10px 0;
+}
+
+.rechercher-sortie{
+    padding: 30px;
+}
+
+.table-sorties{
+    margin: 50px 0 50px 0;
+}
+
+.datepicker p {
+    display: flex;
+}
+
+.sorties-checkboxes{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.button-style, .button-style a{
+    color: white;
+    margin: 0 10px 10px 0;
+}
+
+.center {
+    text-align: center;
+}

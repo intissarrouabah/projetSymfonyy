@@ -1,0 +1,41 @@
+security:
+    encoders:
+        App\Entity\Participant:
+            algorithm: bcrypt
+    providers:
+        my_provider:
+            entity:
+                class: App\Entity\Participant
+                property: username
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+
+            form_login:
+                login_path: login
+                check_path: login
+                provider: my_provider
+                default_target_path: /event
+
+
+
+            logout:
+                path: /logout
+                target: /
+
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+    - { path: ^/participant/new, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+    #- { path: ^/participant/new, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+    - { path: ^/event, roles: IS_AUTHENTICATED_FULLY }

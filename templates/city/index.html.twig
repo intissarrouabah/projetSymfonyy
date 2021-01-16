@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gérer les villes{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="center">
+            <div>
+                <h2>Gérer les villes</h2>
+            </div>
+        </div>
+
+        <h2>Filtrer les villes</h2>
+        <p>Le nom contient</p>
+        <form class="search-container" action="/action_page.php" style="margin:auto;max-width:300px">
+            <input type="text" placeholder="Rechercher" name="search">
+            <button type="submit">Rechercher</button>
+        </form>
+
+        <table class="table table-sorties">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Ville</th>
+                <th scope="col">Code postal</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for city in cities %}
+
+            <tr>
+                <td>{{ city.nameCity }}</td>
+                <td>{{ city.postalCode }}</td>
+                <td>
+                    <a href="{{ path('city_show', {'id': city.id}) }}">Afficher</a>
+                    <a href="{{ path('city_edit', {'id': city.id}) }}">Modifier</a>
+                </td>
+            </tr>
+            {% else %}
+                <tr>
+                    <td colspan="14">Pas de ville</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-primary creer-sortie"><a href="{{ path('city_new') }}">Ajouter une Ville</a></button>
+    </div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Participant{% endblock %}
+
+{% block body %}
+    <h1>Participant</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ participant.id }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ participant.username }}</td>
+            </tr>
+            <tr>
+                <th>Last_name</th>
+                <td>{{ participant.lastName }}</td>
+            </tr>
+            <tr>
+                <th>First_name</th>
+                <td>{{ participant.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ participant.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ participant.email }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ participant.password }}</td>
+            </tr>
+            <tr>
+                <th>Admin</th>
+                <td>{{ participant.admin ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{{ participant.active ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Campus</th>
+                <td>{{ participant.campusNumCampus }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('participant_index') }}">back to list</a>
+
+    <a href="{{ path('participant_edit', {'id': participant.id}) }}">edit</a>
+
+    {{ include('participant/_delete_form.html.twig') }}
+{% endblock %}

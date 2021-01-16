@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sorties{% endblock %}
+
+{% block body %}
+    <h1>Sortie: {{ event.name }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nom de la sortie</th>
+                <td>{{ event.name }}</td>
+            </tr>
+            <tr>
+                <th>Date et heure de la sortie</th>
+                <td>{{ event.startDate ? event.startDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date limite d'inscription</th>
+                <td>{{ event.endDate ? event.endDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de places</th>
+                <td>{{ event.maxRegistrations }}</td>
+            </tr>
+            <tr>
+                <th> Duree en heures</th>
+                <td>{{ event.duration }}</td>
+            </tr>
+
+            <tr>
+                <th>Description et infos</th>
+                <td>{{ event.description }}</td>
+            </tr>
+            <tr>
+                <th>Campus</th>
+                <td>{{ event.campus.getNameCampus() }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ event.city.nameCity }}</td>
+            </tr>
+
+            <tr>
+                <th>Lieu</th>
+                <td>{{ event.location.nameLocation }}</td>
+            </tr>
+            <tr>
+                <th>Rue</th>
+                <td>{{ event.location.address }}</td>
+            </tr>
+            <tr>
+                <th>Latitude</th>
+                <td>{{ event.location.latitude }}</td>
+            </tr>
+            <tr>
+                <th>Longitude</th>
+                <td>{{ event.location.longitude }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+    <a href="{{ path('event_index') }}">Retour à la liste</a>
+
+    {% if app.user.firstname  == event.organizer.firstName %}
+    <button class="btn btn-primary button-style">
+        <a href="{{ path('event_edit', {'id': event.id}) }}">modifier</a>
+    </button>
+
+    {{ include('event/_delete_form.html.twig') }}
+    {% endif %}
+{% endblock %}

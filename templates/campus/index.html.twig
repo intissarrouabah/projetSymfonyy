@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gérer les Campus{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="center">
+            <div>
+                <h2>Gérer les campus</h2>
+            </div>
+        </div>
+
+        <h2>Filtrer les sites</h2>
+        <p>Le nom contient</p>
+        <form class="search-container" action="/action_page.php" style="margin:auto;max-width:300px">
+            <input type="text" placeholder="Rechercher" name="search">
+            <button type="submit">Rechercher</button>
+        </form>
+
+        <table class="table table-sorties">
+
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Campus</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for campus in campuses %}
+            <tr>
+                <td>{{ campus.nameCampus }}</td>
+                <td>
+                    <a href="{{ path('campus_show', {'id': campus.id}) }}">Afficher</a>
+                    <a href="{{ path('campus_edit', {'id': campus.id}) }}">Modifier</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-primary creer-sortie"><a href="{{ path('campus_new') }}">Ajouter un campus</a></button>
+    </div>
+{% endblock %}
